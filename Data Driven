@@ -1,0 +1,25 @@
+public class login_2 {
+	@Test(dataProvider = "create")
+	public void title(String username,String password) 
+	{
+		WebDriverManager.chromedriver().setup();
+		ChromeDriver driver = new ChromeDriver();
+		driver.get("https://www.saucedemo.com/");
+		driver.manage().window().maximize();
+		driver.findElement(By.xpath("//input[@name='user-name']")).sendKeys("username");
+		driver.findElement(By.xpath("//input[@name='password']")).sendKeys("password");
+		driver.quit();
+	}
+	@DataProvider
+	public Object[][] create()
+	{
+		return new Object[][]
+				{
+			{"standard_user","secret_sauce"},
+			{"locked_out_user","secret_sauce"},
+			{"problem_user","secret_sauce"},
+			{"performance_glitch_user","secret_sauce"}
+				};
+				}
+	}
+	
